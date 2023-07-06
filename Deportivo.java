@@ -3,9 +3,9 @@ public class Deportivo extends Automovil {
 	private String aceleracion;
 	private String sistEscape;
 
-	public Deportivo(String motor, String marca, String modelo, String anio, String combustible, int nroPuertas,
+	public Deportivo(String precio, String marca, String modelo, String anio, String combustible, int nroPuertas,
 					 String transmision, String kilometros, String velocidadMax, String aceleracion, String sistEscape) {
-		super(motor, marca, modelo, anio, combustible, nroPuertas, transmision, kilometros);
+		super(precio, marca, modelo, anio, combustible, nroPuertas, transmision, kilometros);
 		this.velocidadMax = velocidadMax;
 		this.aceleracion = aceleracion;
 		this.sistEscape = sistEscape;

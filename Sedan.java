@@ -3,9 +3,9 @@ public class Sedan extends Automovil {
 	private boolean radioTouch;
 	private boolean gps;
 
-	public Sedan(String motor, String marca, String modelo, String anio, String combustible, int nroPuertas,
+	public Sedan(String precio, String marca, String modelo, String anio, String combustible, int nroPuertas,
 				 String transmision, String kilometros, float capacidadMaletero, boolean radioTouch, boolean gps) {
-		super(motor, marca, modelo, anio, combustible, nroPuertas, transmision, kilometros);
+		super(precio, marca, modelo, anio, combustible, nroPuertas, transmision, kilometros);
 		this.capacidadMaletero = capacidadMaletero;
 		this.radioTouch = radioTouch;
 		this.gps = gps;

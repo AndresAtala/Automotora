@@ -1,5 +1,5 @@
 public abstract class Automovil {
-	private String motor;
+	private String precio;
 	private String marca;
 	private String modelo;
 	private String anio;
@@ -7,9 +7,9 @@ public abstract class Automovil {
 	private int nroPuertas;
 	private String transmision;
 	private String kilometros;
-	public Automovil(String motor, String marca, String modelo, String anio, String combustible, int nroPuertas,
+	public Automovil(String precio, String marca, String modelo, String anio, String combustible, int nroPuertas,
 					 String transmision, String kilometros) {
-		this.motor = motor;
+		this.precio = precio;
 		this.marca = marca;
 		this.modelo = modelo;
 		this.anio = anio;
@@ -22,12 +22,12 @@ public abstract class Automovil {
 	public Automovil() {
 	}
 
-	public String getMotor() {
-		return motor;
+	public String getPrecio() {
+		return precio;
 	}
 
-	public void setMotor(String motor) {
-		this.motor = motor;
+	public void setPrecio(String precio) {
+		this.precio = precio;
 	}
 
 	public String getMarca() {
@@ -88,7 +88,7 @@ public abstract class Automovil {
 	@Override
 	public String toString() {
 		return "Automovil" +
-				"Motor=" + motor +
+				"precio=" + precio +
 				", Marca=" + marca+
 				", Modelo=" + modelo +
 				", Año=" + anio +
