@@ -3,12 +3,27 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Automotora {
-/* hacer validaciones para todas las weas tambien agregar estas weas de trabajadores y personas*/
+    /* hacer validaciones para todas las weas tambien agregar estas weas de trabajadores y personas*/
     public static void main(String[] args) {
         List<Automovil> catalogoAutomoviles = new ArrayList<>();
-        Scanner scanner = new Scanner(System.in);
+        Sedan sedan = new Sedan("3600", "toyota", "corolla", "2023", "Gasolina", 5, "Automática", "0 km", 500, true, false);
 
+        catalogoAutomoviles.add(sedan);
+
+        Camioneta camioneta = new Camioneta("5000", "ford", "f150", "2023", "bencina", 4, "automatica", "0 km", 1000, 5000);
+        catalogoAutomoviles.add(camioneta);
+
+        Deportivo deportivo = new Deportivo("Motor Deportivo", "Marca Deportivo", "Modelo Deportivo", "2023", "Gasolina", 2, "Manual", "0 km", "300", "4.2", "Escape Deportivo");
+        catalogoAutomoviles.add(deportivo);
+
+        iniciarMenu(catalogoAutomoviles);
+    }
+
+
+    public static void iniciarMenu(List<Automovil> catalogoAutomoviles) {
+        Scanner scanner = new Scanner(System.in);
         boolean salir = false;
+
         while (!salir) {
             System.out.println("Menú:");
             System.out.println("1. Ingresar Sedán");
@@ -32,6 +47,8 @@ public class Automotora {
                 default -> System.out.println("Opción inválida. Por favor, ingrese nuevamente.");
             }
         }
+
+        scanner.close();
     }
 
     public static void ingresarSedan(Scanner scanner, List<Automovil> catalogoAutomoviles) {
@@ -77,11 +94,9 @@ public class Automotora {
         ingresarAutomovil(scanner, deportivo);
 
         System.out.print("Ingrese la velocidad máxima en km/h: ");
-        int velocidadMax = scanner.nextInt();
-        scanner.nextLine();
+        String velocidadMax = scanner.nextLine();
         System.out.print("Ingrese la aceleración de 0km/h a 100km/h: ");
-        float aceleracion = scanner.nextFloat();
-        scanner.nextLine();
+        String aceleracion = scanner.nextLine();
         System.out.print("Ingrese el sistema de escape, modificado o stock: ");
         String sistEscape = scanner.nextLine();
 
