@@ -5,17 +5,19 @@ import java.util.Scanner;
 import java.util.Optional;
 
 public class Automotora {
-
-    /* comprobar los datos que ingresan de cada persona*/
+    /* El metodo main solo ejecuta la lista automovil, trabajador,
+     tambien agrega autos para que el stock no sea nulo, a la vez que agrega trabajoders
+     al final solo inicia el menu */
     public static void main(String[] args) {
         List<Automovil> catalogoAutomoviles = new ArrayList<>();
         List<Trabajador> listaTrabajadores = new ArrayList<>();
-        //AgregarAutos(catalogoAutomoviles);
+        AgregarAutos(catalogoAutomoviles);
         AgregarTrabajadores(listaTrabajadores);
         iniciarMenu(catalogoAutomoviles, listaTrabajadores);
     }
 
-
+ /* el metod para iniciar menu con todos los casos correspondientes, el menu se
+   ejecuta mientras no se elija la opcion salir  */
     public static void iniciarMenu(List<Automovil> catalogoAutomoviles, List<Trabajador> listaTrabajadores) {
         List<Comprador> listaClientes = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
@@ -54,7 +56,10 @@ public class Automotora {
 
         scanner.close();
     }
-
+    /* Este metodo la funcion que cumple como dice el nombre
+       es poder ingresar un vehiculo en especifico y aparte llamar a
+       a la funcion ingresar automovil, que es la clase "padre" de las clases sedan
+       camioneta y deportivo  */
     public static void ingresarSedan(Scanner scanner, List<Automovil> catalogoAutomoviles) {
         Sedan sedan = new Sedan();
         ingresarAutomovil(scanner, sedan);
@@ -75,7 +80,8 @@ public class Automotora {
         catalogoAutomoviles.add(sedan);
         System.out.println("Sedán ingresado correctamente.");
     }
-
+    /* mismo metodo de agregar solo que con las carecteristicas de
+       una camioneta  */
     public static void ingresarCamioneta(Scanner scanner, List<Automovil> catalogoAutomoviles) {
         Camioneta camioneta = new Camioneta();
         ingresarAutomovil(scanner, camioneta);
@@ -93,7 +99,8 @@ public class Automotora {
         catalogoAutomoviles.add(camioneta);
         System.out.println("Camioneta ingresada correctamente. ");
     }
-
+    /* mismo metodo de agregar solo que con las carecteristicas de
+       un deportivo  */
     public static void ingresarDeportivo(Scanner scanner, List<Automovil> catalogoAutomoviles) {
         Deportivo deportivo = new Deportivo();
         ingresarAutomovil(scanner, deportivo);
@@ -115,7 +122,8 @@ public class Automotora {
         catalogoAutomoviles.add(deportivo);
         System.out.println("Deportivo ingresado correctamente.");
     }
-
+    /* Metodo que se usa en todas las opciones de agregar, ya que esta tiene todos
+    * los atriubtos de un automovil */
     public static void ingresarAutomovil(Scanner scanner, Automovil automovil) {
         System.out.print("Ingrese el precio del automovil: ");
         String precio = scanner.nextLine();
@@ -150,7 +158,8 @@ public class Automotora {
         automovil.setTransmision(transmision);
         automovil.setKilometros(kilometros);
     }
-
+    /* con este metodo se puede recorrer la arraylist de automoviles para
+    mostrar los autos que estan en stock  */
     public static void mostrarCatalogoAutomoviles(List<Automovil> catalogoAutomoviles) {
         if (catalogoAutomoviles.isEmpty()) {
             System.out.println("No hay autos en el catálogo");
@@ -161,7 +170,8 @@ public class Automotora {
             }
         }
     }
-
+    /* la funcion que cumple este metodo es que agrega autos a la automotora
+    para que cuando se pida ver el catalogo ya existan autos  */
     public static void AgregarAutos(List<Automovil> catalogoAutomoviles) {
         Sedan sedan = new Sedan("3600", "toyota", "corolla", "2023", "Gasolina", "5", "Automática", "0 km", "", "true", "false");
         catalogoAutomoviles.add(sedan);
@@ -170,10 +180,10 @@ public class Automotora {
         Deportivo deportivo = new Deportivo("Motor Deportivo", "Marca Deportivo", "Modelo Deportivo", "2023", "Gasolina", "2", "Manual", "0 km", "300", "4.2", "Escape Deportivo");
         catalogoAutomoviles.add(deportivo);
     }
-
+    /* Cuando se inicia el menu lo primero que pide son los datos
+        del cliente  */
     public static Comprador ingresarDatosCliente(Scanner scanner) {
         Comprador cliente = new Comprador();
-
         System.out.print("Nombre: ");
         cliente.setNombre(scanner.nextLine());
 
@@ -194,14 +204,16 @@ public class Automotora {
 
         return cliente;
     }
-
+    /* se usa este metodo para apenas se inicie el menu ya tenga trabajadores
+        automotra  */
     public static void AgregarTrabajadores(List<Trabajador> listaTrabajadores) {
         Trabajador trabajador1 = new Trabajador("Juan", "Pérez", "RUT", "Dirección", "Número de teléfono", "Cargo", "Sueldo", "Experiencia");
         Trabajador trabajador2 = new Trabajador("María", "González", "RUT", "Dirección", "Número de teléfono", "Cargo", "Sueldo", "Experiencia");
         listaTrabajadores.add(trabajador1);
         listaTrabajadores.add(trabajador2);
     }
-
+    /* cuando se ingresa un automovil, al finalizar se dice que trabajador
+        atendio al cliente de manera aleatoria  */
     public static Trabajador seleccionarTrabajador(List<Trabajador> listaTrabajadores, Random random) {
         if (listaTrabajadores.isEmpty()) {
             return null;
@@ -209,7 +221,9 @@ public class Automotora {
         int index = random.nextInt(listaTrabajadores.size());
         return listaTrabajadores.get(index);
     }
-
+    /* como dice el nombre del metodo, en el menu cuando
+        el usuario quiere ver quienes son los trabajadores
+        este metodo los muestra */
     public static void mostrarTrabajadores(List<Trabajador> listaTrabajadores) {
         if (listaTrabajadores.isEmpty()) {
             System.out.println("No hay trabajadores registrados");
@@ -226,7 +240,8 @@ public class Automotora {
             }
         }
     }
-
+    /* para simplificar el metodo de mostrar menu se agrego este
+        metodo */
     public static void opcionesMenu() {
         System.out.println("Menú:");
         System.out.println("1. Ingresar Sedán");
@@ -238,11 +253,13 @@ public class Automotora {
         System.out.print("Ingrese una opción: ");
     }
 
+    /* este metodo elije que trabajador se muestra */
     public static void seleccionarTrabajadores(List<Trabajador> listaTrabajadores) {
         Trabajador trabajadorAtendiendo = seleccionarTrabajador(listaTrabajadores, new Random());
         System.out.println("El trabajador " + trabajadorAtendiendo.getNombre() + " " + trabajadorAtendiendo.getApellido() + " lo atendió.");
     }
-
+    /* metodo para asegurar que el precio ingresado sean numeros
+        y no letras  */
     public static boolean comprobarPrecioIngresados(String precio) {
         Scanner scanner = new Scanner(System.in);
         while (precio.isEmpty() || contieneLetras(precio)) {
@@ -256,7 +273,7 @@ public class Automotora {
         return true;
 
     }
-
+    /* metodo que recorre el string buscando letras  */
     public static boolean contieneLetras(String str) {
         for (char c : str.toCharArray()) {
             if (Character.isLetter(c)) {
@@ -265,7 +282,8 @@ public class Automotora {
         }
         return false;
     }
-
+    /* metodo que comprueba que el año ingresado sean solo
+       numeros  */
     public static boolean Comprobaranio(String anio) {
         Scanner scanner = new Scanner(System.in);
         while (contieneLetras(anio) || anio.isEmpty()) {
@@ -274,7 +292,9 @@ public class Automotora {
         }
         return false;
     }
-
+    /* metodo que comprueba que la transmision sea solo automatica o manual
+    * si el usuario ingresa una transmision inconrrecta le pide que ingrese
+    * de nuevo  */
     public static boolean comprobarTransmision(String transmision) {
         Scanner scanner = new Scanner(System.in);
         while (!transmision.equals("automatica") && !transmision.equals("manual")) {
@@ -286,7 +306,8 @@ public class Automotora {
         }
         return false;
     }
-
+    /* metodo que comprueba que los kilometros ingresafos sean solo
+       numeros  */
     public static boolean comprobarkmIngresados(String kilometros) {
         Scanner scanner = new Scanner(System.in);
         while (kilometros.isEmpty() || contieneLetras(kilometros)) {
@@ -299,7 +320,8 @@ public class Automotora {
         }
         return true;
     }
-
+    /* metodo que comprueba que el tipo de motorizacion ingresado sea solo diesel
+    * bencina, hibrido o electrico  */
     public static boolean comprobarmotor(String combustible) {
         Scanner scanner = new Scanner(System.in);
         while (!combustible.equals("bencina") && !combustible.equals("diesel") && !combustible.equals("hibrido") && !combustible.equals("electrico")) {
@@ -311,7 +333,8 @@ public class Automotora {
         }
         return false;
     }
-
+    /* metodo que comprueba que las puertas ingresadas  sean solo
+       numeros, que esten en un rango entre 1 y 5 */
     public static boolean comprobarPuertas(String puerta) {
         Scanner scanner = new Scanner(System.in);
         while (puerta.isEmpty() || contieneLetras(puerta) || !esCantidadValida(puerta)) {
@@ -326,12 +349,13 @@ public class Automotora {
         }
         return true;
     }
-
+    /* metodo que complementa el de las puertas ya que este decide si esta dentro del valor esperado  */
     public static boolean esCantidadValida(String cantidad) {
         int puertas = Integer.parseInt(cantidad);
         return puertas >= 1 && puertas <= 5;
     }
-
+    /* metodo que comprueba que la capacidad de maletero sean solo
+       numeros  */
     public static boolean comprobarCapacidadMaletero(String maletero) {
         Scanner scanner = new Scanner(System.in);
         while (maletero.isEmpty() || contieneLetras(maletero)) {
@@ -344,6 +368,8 @@ public class Automotora {
         }
         return true;
     }
+    /* metodo que comprueba que cuando se ingrese el infoentretenimiento sea solo
+       si o no  */
     public static boolean comprobarinfoentretenimiento(String str) {
         Scanner scanner = new Scanner(System.in);
         while (!str.equals("si") && !str.equals("no")) {
@@ -355,6 +381,8 @@ public class Automotora {
         }
         return false;
     }
+    /* metodo que comprueba que la capacidad ingresada sean solo
+       numeros  */
     public static boolean comprobarcapacidad(String str) {
         Scanner scanner = new Scanner(System.in);
         while (str.isEmpty() || contieneLetras(str)) {
@@ -368,6 +396,8 @@ public class Automotora {
         return true;
 
     }
+    /* metodo que comprueba que la velocidad maxima sean solo
+       numeros  */
     public static boolean comprobarvelocidad(String str) {
         Scanner scanner = new Scanner(System.in);
         while (str.isEmpty() || contieneLetras(str)) {
@@ -382,11 +412,13 @@ public class Automotora {
         }
         return true;
     }
-
+    /* metodo que comprueba que la velcidad esten en cierto rango */
     public static boolean esvelocidadValida(String cantidad) {
         int vel = Integer.parseInt(cantidad);
         return vel >= 0 && vel <= 450;
     }
+    /* metodo que comprueba la aceleracion ingresada sean solo
+       numeros  */
     public static boolean comprobarAceleracion(String aceleracion) {
         Scanner scanner = new Scanner(System.in);
         while (contieneLetras(aceleracion) || aceleracion.isEmpty()) {
@@ -395,6 +427,8 @@ public class Automotora {
         }
         return false;
     }
+    /* metodo que comprueba que el escape ingresado sean solo
+       stock o modificado  */
     public static boolean comprobarEscape(String escape) {
         Scanner scanner = new Scanner(System.in);
         while (!escape.equals("stock") && !escape.equals("modificado")) {
@@ -406,7 +440,6 @@ public class Automotora {
         }
         return false;
     }
-
 }
 
 
