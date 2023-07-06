@@ -6,7 +6,7 @@ import java.util.Optional;
 
 public class Automotora {
 
-    /* comprobar los datos que ingresan de cada automovil*/
+    /* comprobar los datos que ingresan de cada persona*/
     public static void main(String[] args) {
         List<Automovil> catalogoAutomoviles = new ArrayList<>();
         List<Trabajador> listaTrabajadores = new ArrayList<>();
@@ -60,14 +60,14 @@ public class Automotora {
         ingresarAutomovil(scanner, sedan);
 
         System.out.print("Ingrese la capacidad del maletero en litros : ");
-        float capacidadMaletero = scanner.nextFloat();
-        scanner.nextLine();
+        String capacidadMaletero = scanner.nextLine();
+        comprobarCapacidadMaletero(capacidadMaletero);
         System.out.print("¿Tiene radio touch? (si/no): ");
-        String radioTouchInput = scanner.nextLine();
-        boolean radioTouch = radioTouchInput.equalsIgnoreCase("si");
+        String radioTouch = scanner.nextLine();
+        comprobarinfoentretenimiento(radioTouch);
         System.out.print("¿Tiene GPS? (si/no): ");
-        String gpsInput = scanner.nextLine();
-        boolean gps = gpsInput.equalsIgnoreCase("si");
+        String gps = scanner.nextLine();
+        comprobarinfoentretenimiento(gps);
         sedan.setCapacidadMaletero(capacidadMaletero);
         sedan.setRadioTouch(radioTouch);
         sedan.setGps(gps);
@@ -81,11 +81,11 @@ public class Automotora {
         ingresarAutomovil(scanner, camioneta);
 
         System.out.print("Ingrese la capacidad de carga en kilogramos: ");
-        float capacidadCarga = scanner.nextFloat();
-        scanner.nextLine();
+        String capacidadCarga = scanner.nextLine();
+        comprobarcapacidad(capacidadCarga);
         System.out.print("Ingrese la capacidad de remolque en kilogramos: ");
-        float capacidadRemolque = scanner.nextFloat();
-        scanner.nextLine();
+        String capacidadRemolque = scanner.nextLine();
+        comprobarcapacidad(capacidadRemolque);
 
         camioneta.setCapacidadDeCarga(capacidadCarga);
         camioneta.setCapacidadRemolque(capacidadRemolque);
@@ -100,10 +100,13 @@ public class Automotora {
 
         System.out.print("Ingrese la velocidad máxima en km/h: ");
         String velocidadMax = scanner.nextLine();
+        comprobarvelocidad(velocidadMax);
         System.out.print("Ingrese la aceleración de 0km/h a 100km/h: ");
         String aceleracion = scanner.nextLine();
+        comprobarAceleracion(aceleracion);
         System.out.print("Ingrese el sistema de escape, modificado o stock: ");
         String sistEscape = scanner.nextLine();
+        comprobarEscape(sistEscape);
 
         deportivo.setVelocidadMax(velocidadMax);
         deportivo.setAceleracion(aceleracion);
@@ -160,9 +163,9 @@ public class Automotora {
     }
 
     public static void AgregarAutos(List<Automovil> catalogoAutomoviles) {
-        Sedan sedan = new Sedan("3600", "toyota", "corolla", "2023", "Gasolina", "5", "Automática", "0 km", 500, true, false);
+        Sedan sedan = new Sedan("3600", "toyota", "corolla", "2023", "Gasolina", "5", "Automática", "0 km", "", "true", "false");
         catalogoAutomoviles.add(sedan);
-        Camioneta camioneta = new Camioneta("5000", "ford", "f150", "2023", "bencina", "4", "automatica", "0 km", 1000, 5000);
+        Camioneta camioneta = new Camioneta("5000", "ford", "f150", "2023", "bencina", "4", "automatica", "0 km", "1000", "5000");
         catalogoAutomoviles.add(camioneta);
         Deportivo deportivo = new Deportivo("Motor Deportivo", "Marca Deportivo", "Modelo Deportivo", "2023", "Gasolina", "2", "Manual", "0 km", "300", "4.2", "Escape Deportivo");
         catalogoAutomoviles.add(deportivo);
@@ -253,6 +256,7 @@ public class Automotora {
         return true;
 
     }
+
     public static boolean contieneLetras(String str) {
         for (char c : str.toCharArray()) {
             if (Character.isLetter(c)) {
@@ -270,6 +274,7 @@ public class Automotora {
         }
         return false;
     }
+
     public static boolean comprobarTransmision(String transmision) {
         Scanner scanner = new Scanner(System.in);
         while (!transmision.equals("automatica") && !transmision.equals("manual")) {
@@ -294,6 +299,7 @@ public class Automotora {
         }
         return true;
     }
+
     public static boolean comprobarmotor(String combustible) {
         Scanner scanner = new Scanner(System.in);
         while (!combustible.equals("bencina") && !combustible.equals("diesel") && !combustible.equals("hibrido") && !combustible.equals("electrico")) {
@@ -305,10 +311,11 @@ public class Automotora {
         }
         return false;
     }
+
     public static boolean comprobarPuertas(String puerta) {
         Scanner scanner = new Scanner(System.in);
         while (puerta.isEmpty() || contieneLetras(puerta) || !esCantidadValida(puerta)) {
-            System.out.println("Ingrese la cantidad de puertas (números del 1 al 4):");
+            System.out.println("Ingrese la cantidad de puertas (números del 1 al 5):");
             puerta = scanner.nextLine().trim();
 
             if (puerta.isEmpty() || contieneLetras(puerta)) {
@@ -324,6 +331,82 @@ public class Automotora {
         int puertas = Integer.parseInt(cantidad);
         return puertas >= 1 && puertas <= 5;
     }
+
+    public static boolean comprobarCapacidadMaletero(String maletero) {
+        Scanner scanner = new Scanner(System.in);
+        while (maletero.isEmpty() || contieneLetras(maletero)) {
+            System.out.println("Ingrese capacidad en numeros:");
+            maletero = scanner.nextLine().trim();
+
+            if (maletero.isEmpty() || contieneLetras(maletero)) {
+                System.out.println("Dato inválido. Por favor, ingrese nuevamente.");
+            }
+        }
+        return true;
+    }
+    public static boolean comprobarinfoentretenimiento(String str) {
+        Scanner scanner = new Scanner(System.in);
+        while (!str.equals("si") && !str.equals("no")) {
+            System.out.println("ingrese respuesta valida (si, no)");
+            str = scanner.nextLine().trim();
+            if (str.isEmpty()) {
+                System.out.println("Dato inválido. Por favor, ingrese nuevamente.");
+            }
+        }
+        return false;
+    }
+    public static boolean comprobarcapacidad(String str) {
+        Scanner scanner = new Scanner(System.in);
+        while (str.isEmpty() || contieneLetras(str)) {
+            System.out.println("Ingrese un capacidad valida en KG:");
+            str = scanner.nextLine().trim();
+
+            if (str.isEmpty() || contieneLetras(str)) {
+                System.out.println("Dato inválido. Por favor, ingrese nuevamente.");
+            }
+        }
+        return true;
+
+    }
+    public static boolean comprobarvelocidad(String str) {
+        Scanner scanner = new Scanner(System.in);
+        while (str.isEmpty() || contieneLetras(str)) {
+            System.out.println("Ingrese velocidad (desde 0km/h hasta 450km/h):");
+            str = scanner.nextLine().trim();
+
+            if (str.isEmpty() || contieneLetras(str)) {
+                System.out.println("Dato inválido. Por favor, ingrese nuevamente.");
+            } else if (!esvelocidadValida(str)) {
+                System.out.println("La velocidad no es válida. Por favor, ingrese nuevamente.");
+            }
+        }
+        return true;
+    }
+
+    public static boolean esvelocidadValida(String cantidad) {
+        int vel = Integer.parseInt(cantidad);
+        return vel >= 0 && vel <= 450;
+    }
+    public static boolean comprobarAceleracion(String aceleracion) {
+        Scanner scanner = new Scanner(System.in);
+        while (contieneLetras(aceleracion) || aceleracion.isEmpty()) {
+            System.out.println("ingrese aceleracion valida");
+            aceleracion = scanner.nextLine().trim();
+        }
+        return false;
+    }
+    public static boolean comprobarEscape(String escape) {
+        Scanner scanner = new Scanner(System.in);
+        while (!escape.equals("stock") && !escape.equals("modificado")) {
+            System.out.println("ingrese tipo de escape valido (stock, modificado)");
+            escape = scanner.nextLine().trim();
+            if (escape.isEmpty()) {
+                System.out.println("Dato inválido. Por favor, ingrese nuevamente.");
+            }
+        }
+        return false;
+    }
+
 }
 
 
