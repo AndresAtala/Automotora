@@ -176,11 +176,11 @@ public class Automotora {
     /* la funcion que cumple este metodo es que agrega autos a la automotora
     para que cuando se pida ver el catalogo ya existan autos  */
     public static void AgregarAutos(List<Automovil> catalogoAutomoviles) {
-        Sedan sedan = new Sedan("3600", "toyota", "corolla", "2023", "Gasolina", "5", "Automática", "0 km", "", "true", "false");
+        Sedan sedan = new Sedan("3600", "toyota", "corolla", "2023", "Gasolina", "5", "Automática", "1244421 km", "100", "si", "si");
         catalogoAutomoviles.add(sedan);
-        Camioneta camioneta = new Camioneta("5000", "ford", "f150", "2023", "bencina", "4", "automatica", "0 km", "1000", "5000");
+        Camioneta camioneta = new Camioneta("5000", "ford", "f150", "2023", "bencina", "4", "automatica", "1400000 km", "1000", "5000");
         catalogoAutomoviles.add(camioneta);
-        Deportivo deportivo = new Deportivo("Motor Deportivo", "Marca Deportivo", "Modelo Deportivo", "2023", "Gasolina", "2", "Manual", "0 km", "300", "4.2", "Escape Deportivo");
+        Deportivo deportivo = new Deportivo("Hibrido", "Porsche", "911", "2018", "hibrido", "2", "automatica", "10000km", "300", "4.2", "Escape Deportivo");
         catalogoAutomoviles.add(deportivo);
     }
     /* Cuando se inicia el menu lo primero que pide son los datos
@@ -210,10 +210,12 @@ public class Automotora {
     /* se usa este metodo para apenas se inicie el menu ya tenga trabajadores
         automotra  */
     public static void AgregarTrabajadores(List<Trabajador> listaTrabajadores) {
-        Trabajador trabajador1 = new Trabajador("Juan", "Pérez", "RUT", "Dirección", "Número de teléfono", "Cargo", "Sueldo", "Experiencia");
-        Trabajador trabajador2 = new Trabajador("María", "González", "RUT", "Dirección", "Número de teléfono", "Cargo", "Sueldo", "Experiencia");
+        Trabajador trabajador1 = new Trabajador("Juan", "Pérez", "23755723-8", "Avenida pablo neruda 01243", "500290543", "Vendedor", "521000", "3 años");
+        Trabajador trabajador2 = new Trabajador("Jose", "González", "201324723-8", "Avenida San Martin 1204", "994928234", "vendedor", "440000", "2 Años");
+        Trabajador trabajador3 = new Trabajador("Pedro", "Vidal", "17345801-8", "Avenida ohiigins 1245", "998321454", "Vendedor", "601000", "5 Meses");
         listaTrabajadores.add(trabajador1);
         listaTrabajadores.add(trabajador2);
+        listaTrabajadores.add(trabajador3);
     }
     /* cuando se ingresa un automovil, al finalizar se dice que trabajador
         atendio al cliente de manera aleatoria  */
@@ -527,10 +529,6 @@ public class Automotora {
             System.out.println("Índice inválido.");
         }
     }
-
-
-
-
 }
 
 
