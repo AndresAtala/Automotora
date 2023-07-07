@@ -2,7 +2,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
-import java.util.Optional;
 
 public class Automotora {
     /* El metodo main solo ejecuta la lista automovil, trabajador,
@@ -176,11 +175,11 @@ public class Automotora {
     /* la funcion que cumple este metodo es que agrega autos a la automotora
     para que cuando se pida ver el catalogo ya existan autos  */
     public static void AgregarAutos(List<Automovil> catalogoAutomoviles) {
-        Sedan sedan = new Sedan("3600", "toyota", "corolla", "2023", "Gasolina", "5", "Automática", "1244421 km", "100", "si", "si");
+        Sedan sedan = new Sedan("3600", "toyota", "corolla", "2023", "Diesel", "5", "Automática", "1244421 km", "100", "si", "si");
         catalogoAutomoviles.add(sedan);
         Camioneta camioneta = new Camioneta("5000", "ford", "f150", "2023", "bencina", "4", "automatica", "1400000 km", "1000", "5000");
         catalogoAutomoviles.add(camioneta);
-        Deportivo deportivo = new Deportivo("Hibrido", "Porsche", "911", "2018", "hibrido", "2", "automatica", "10000km", "300", "4.2", "Escape Deportivo");
+        Deportivo deportivo = new Deportivo("500000", "Porsche", "911", "2018", "hibrido", "2", "automatica", "10000km", "300", "4.2", "Escape Deportivo");
         catalogoAutomoviles.add(deportivo);
     }
     /* Cuando se inicia el menu lo primero que pide son los datos
