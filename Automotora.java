@@ -46,7 +46,10 @@ public class Automotora {
                 }
                 case 4 -> mostrarCatalogoAutomoviles(catalogoAutomoviles);
                 case 5 -> mostrarTrabajadores(listaTrabajadores);
-                case 6 -> {
+                case 6 -> editarAutomovil(scanner, catalogoAutomoviles);
+                case 7 ->buscarPorMarca(scanner, catalogoAutomoviles);
+                case 8 -> eliminarAutomovil(scanner, catalogoAutomoviles);
+                case 9-> {
                     salir = true;
                     System.out.println("¡finalizando programa!");
                 }
@@ -249,7 +252,10 @@ public class Automotora {
         System.out.println("3. Ingresar Deportivo");
         System.out.println("4. Mostrar catálogo de automóviles");
         System.out.println("5. Mostrar Trabajadores");
-        System.out.println("6. salir");
+        System.out.println("6. Editar automovil");
+        System.out.println("7. Buscar auto por marca");
+        System.out.println("8. eliminar");
+        System.out.println("9. salir");
         System.out.print("Ingrese una opción: ");
     }
 
@@ -440,6 +446,91 @@ public class Automotora {
         }
         return false;
     }
+    public static void editarAutomovil(Scanner scanner, List<Automovil> catalogoAutomoviles) {
+        System.out.print("Ingrese el índice del automóvil que desea editar: ");
+        int indice = scanner.nextInt();
+        scanner.nextLine();
+
+        if (indice >= 0 && indice < catalogoAutomoviles.size()) {
+            Automovil automovil = catalogoAutomoviles.get(indice);
+
+            System.out.println("Seleccione el atributo a editar:");
+            System.out.println("1. Precio");
+            System.out.println("2. Marca");
+            System.out.println("3. Modelo");
+            System.out.println("4. Año");
+
+            int opcion = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (opcion) {
+                case 1:
+                    System.out.print("Ingrese el nuevo precio: ");
+                    String precio = scanner.nextLine();
+                    automovil.setPrecio(precio);
+                    break;
+                case 2:
+                    System.out.print("Ingrese la nueva marca: ");
+                    String marca = scanner.nextLine();
+                    automovil.setMarca(marca);
+                    break;
+                case 3:
+                    System.out.print("Ingrese el nuevo modelo: ");
+                    String modelo = scanner.nextLine();
+                    automovil.setModelo(modelo);
+                    break;
+                case 4:
+                    System.out.print("Ingrese el nuevo año: ");
+                    String anio = scanner.nextLine();
+                    automovil.setAnio(anio);
+                    break;
+                default:
+                    System.out.println("Opción inválida.");
+                    break;
+            }
+
+            System.out.println("Automóvil editado correctamente.");
+        } else {
+            System.out.println("Índice inválido.");
+        }
+    }
+    public static void buscarPorMarca(Scanner scanner, List<Automovil> catalogoAutomoviles) {
+        System.out.print("Ingrese la marca del automóvil que desea buscar: ");
+        String marca = scanner.nextLine();
+
+        List<Automovil> automovilesEncontrados = new ArrayList<>();
+
+        for (Automovil automovil : catalogoAutomoviles) {
+            if (automovil.getMarca().equalsIgnoreCase(marca)) {
+                automovilesEncontrados.add(automovil);
+            }
+        }
+
+        if (automovilesEncontrados.isEmpty()) {
+            System.out.println("No se encontraron automóviles de la marca especificada.");
+        } else {
+            System.out.println("Automóviles encontrados:");
+            for (Automovil automovil : automovilesEncontrados) {
+                System.out.println(automovil);
+            }
+        }
+    }
+    public static void eliminarAutomovil(Scanner scanner, List<Automovil> catalogoAutomoviles) {
+        System.out.print("Ingrese el índice del automóvil que desea eliminar: ");
+        int indice = scanner.nextInt();
+        scanner.nextLine();
+
+        if (indice >= 0 && indice < catalogoAutomoviles.size()) {
+            Automovil automovil = catalogoAutomoviles.remove(indice);
+            System.out.println("Automóvil eliminado correctamente: " + automovil);
+        } else {
+            System.out.println("Índice inválido.");
+        }
+    }
+
+
+
+
 }
 
 
